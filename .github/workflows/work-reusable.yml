@@ -20,6 +20,6 @@ jobs:
         with:
           who-to-greet: 'Carlos Ponce' # envia para inputs da action
       - id: rdn    
-        run: echo random-number "::set-output name=rdnumber::${{ steps.key-four.outputs.key-three }}"
+        run: echo random-number "::set-output name=rdnumber::${{ steps.key-four.outputs.random-number }}"
       # recebe o value da action em outputs-> random-number -> value 
         shell: bash
