@@ -1,4 +1,4 @@
-on: [push]
+on: [pull_request]
 
 jobs:
   hello_world_job:
@@ -6,10 +6,11 @@ jobs:
     name: A job to say hello
     steps:
       - uses: actions/checkout@v3 # consulta actions
-      - id: key4 # identificação da ação para outputs
+      - id: foo # identificação da ação para outputs
         uses: cadu1982/hello-action@v1 # referencia a action a ser usada
         with:
           who-to-greet: 'Carlos Ponce' # envia para inputs da action
-      - run: echo random-number ${{ steps.key4.outputs.key3 }}
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
       # recebe o value da action em outputs-> random-number -> value 
         shell: bash
+      
