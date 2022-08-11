@@ -12,13 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to say hello
     outputs:
-      output1: ${{ steps.step1.outputs.rdnumber }}
+      output1: ${{ steps.rdn.outputs.rdnumber }}
     steps:
       - uses: actions/checkout@v3 # consulta actions
       - id: key-four # identificação da ação para outputs
         uses: cadu1982/hello-action@v1 # referencia a action a ser usada
         with:
-          key-one: 'Carlos Ponce' # envia para inputs da action
-      - run: echo random-number "::set-output name=rdnumber::${{ steps.key-four.outputs.key-three }}"
+          who-to-greet: 'Carlos Ponce' # envia para inputs da action
+      - id: rdn    
+        run: echo random-number "::set-output name=rdnumber::${{ steps.key-four.outputs.key-three }}"
       # recebe o value da action em outputs-> random-number -> value 
         shell: bash
