@@ -2,24 +2,20 @@ name: Hello Sr
 
 on:
   workflow_call:
-    outputs:
-      random-number:
-        description: "The output randon number"
-        value: ${{ jobs.hello_word_job.outputs.output1 }}
+    
       
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
     name: A job to say hello
-    outputs:
-      output1: ${{ steps.rdn.outputs.rdnumber }}
     steps:
       - uses: actions/checkout@v3 # consulta actions
       - id: key-four # identificação da ação para outputs
         uses: cadu1982/hello-action@v1 # referencia a action a ser usada
         with:
           who-to-greet: 'Carlos Ponce' # envia para inputs da action
-      - id: rdn    
-        run: echo random-number "::set-output name=rdnumber::${{ steps.key-four.outputs.random-number }}"
+      - id: rdn
+        run: echo random-number ${{ steps.key-four.outputs.random-number }}
       # recebe o value da action em outputs-> random-number -> value 
         shell: bash
+      
